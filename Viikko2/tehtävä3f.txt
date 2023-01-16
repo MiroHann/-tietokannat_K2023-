@@ -1,8 +1,0 @@
-mysql> SELECT name FROm pet WHERE sex = 'm' AND species = 'dog';
-+--------+
-| name   |
-+--------+
-| Fang   |
-| Bowser |
-+--------+
-2 rows in set (0.00 sec)
