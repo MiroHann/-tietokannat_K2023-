@@ -1,0 +1,8 @@
+mysql> SELECT name, owner FROm pet WHERE sex = 'm' AND species = 'dog';
++--------+-------+
+| name   | owner |
++--------+-------+
+| Fang   | Benny |
+| Bowser | Diane |
++--------+-------+
+2 rows in set (0.00 sec)
