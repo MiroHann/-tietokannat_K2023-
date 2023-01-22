@@ -1,5 +1,7 @@
 abc)
-
+mysql> DELETE FROM pet where name = 'Puffball';
+mysql> UPDATE pet SET birth = '1989-08-31' WHERE name = 'Bowser';
+mysql> UPDATE pet SET death = '2000-09-15' WHERE name = 'Chripy';
 mysql> select * FROM pet;
 +----------+--------+---------+------+------------+------------+
 | name     | owner  | species | sex  | birth      | death      |
