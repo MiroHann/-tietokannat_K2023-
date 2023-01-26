@@ -17,22 +17,22 @@ mysql> SELECT * FROM employees ORDER BY last_name LIMIT 10;
 
 b)
 
-mysql> SELECT * FROM employees ORDER BY last_name AND first_name LIMIT 10;
+mysql>  SELECT * FROM employees ORDER BY last_name, first_name ASC LIMIT 10;
 +--------+------------+------------+-----------+--------+------------+
 | emp_no | birth_date | first_name | last_name | gender | hire_date  |
 +--------+------------+------------+-----------+--------+------------+
-|  10001 | 1953-09-02 | Georgi     | Facello   | M      | 1986-06-26 |
-|  10002 | 1964-06-02 | Bezalel    | Simmel    | F      | 1985-11-21 |
-|  10003 | 1959-12-03 | Parto      | Bamford   | M      | 1986-08-28 |
-|  10004 | 1954-05-01 | Chirstian  | Koblick   | M      | 1986-12-01 |
-|  10005 | 1955-01-21 | Kyoichi    | Maliniak  | M      | 1989-09-12 |
-|  10006 | 1953-04-20 | Anneke     | Preusig   | F      | 1989-06-02 |
-|  10007 | 1957-05-23 | Tzvetan    | Zielinski | F      | 1989-02-10 |
-|  10008 | 1958-02-19 | Saniya     | Kalloufi  | M      | 1994-09-15 |
-|  10009 | 1952-04-19 | Sumant     | Peac      | F      | 1985-02-18 |
-|  10010 | 1963-06-01 | Duangkaew  | Piveteau  | F      | 1989-08-24 |
+| 258641 | 1961-05-23 | Abdelkader | Aamodt    | M      | 1994-12-02 |
+| 258005 | 1953-02-17 | Adhemar    | Aamodt    | F      | 1991-01-21 |
+| 455773 | 1960-05-04 | Aemilian   | Aamodt    | M      | 1988-04-21 |
+| 436560 | 1959-03-16 | Alagu      | Aamodt    | F      | 1991-10-17 |
+| 266651 | 1959-05-28 | Aleksander | Aamodt    | F      | 1989-03-29 |
+| 487598 | 1962-03-03 | Alexius    | Aamodt    | M      | 1994-12-30 |
+| 216963 | 1960-07-16 | Alois      | Aamodt    | M      | 1995-08-24 |
+|  15427 | 1959-03-06 | Aluzio     | Aamodt    | M      | 1985-03-03 |
+| 100860 | 1964-06-20 | Amabile    | Aamodt    | F      | 1993-02-06 |
+| 107070 | 1954-04-24 | Anestis    | Aamodt    | M      | 1990-10-30 |
 +--------+------------+------------+-----------+--------+------------+
-10 rows in set, 65535 warnings (0.22 sec)
+10 rows in set (0.13 sec)
 
 c) 
 mysql> SELECT * FROM employees ORDER BY hire_date DESC LIMIT 5;
@@ -67,17 +67,79 @@ mysql> SELECT ANY_VALUE(first_name), ANY_VALUE(last_name), MIN(salary) FROM sala
 
 f)
 
-mysql> SELECT first_name, last_name, salary FROM salaries JOIN employees ON salaries.emp_no=employees.emp_no WHERE salary>150000;
-
+mysql> SELECT first_name, last_name, salary FROM salaries JOIN employees ON salaries.emp_no=employees.emp_no WHERE salary>=150000;
++------------+-----------+--------+
+| first_name | last_name | salary |
++------------+-----------+--------+
+| Tokuyasu   | Pesch     | 151115 |
+| Tokuyasu   | Pesch     | 153166 |
+| Tokuyasu   | Pesch     | 153458 |
+| Tokuyasu   | Pesch     | 157821 |
+| Tokuyasu   | Pesch     | 158220 |
+| Ibibia     | Junet     | 150345 |
+| Xiahua     | Whitcomb  | 151929 |
+| Xiahua     | Whitcomb  | 155709 |
+| Lansing    | Kambil    | 150052 |
+| Willard    | Baca      | 151768 |
+| Willard    | Baca      | 154459 |
+| Tsutomu    | Alameldin | 151484 |
+| Tsutomu    | Alameldin | 154885 |
+| Tsutomu    | Alameldin | 155377 |
+| Tsutomu    | Alameldin | 154888 |
+| Tsutomu    | Alameldin | 155190 |
+| Charmane   | Griswold  | 151596 |
+| Charmane   | Griswold  | 153715 |
+36 rows in set (0.59 sec)
 g)
 
-mysql> SELECT COUNT(dept_name) as number_of_employees FROM departments JOIN dept_emp ON departments.dept_no=dept_emp.dept_no WHERE dept_name='Sales' limit 5;
+mysql>  SELECT COUNT(dept_name) as number_of_employees FROM departments JOIN dept_emp ON departments.dept_no=dept_emp.dept_no WHERE dept_name='Sales';
++---------------------+
+| number_of_employees |
++---------------------+
+|               52245 |
++---------------------+
+1 row in set (0.01 sec)
 
-mysql>SELECT COUNT(dept_name) as number_of_employees FROM departments JOIN dept_emp ON departments.dept_no=dept_emp.dept_no WHERE dept_name='Marketing' limit 5;
+mysql> SELECT COUNT(dept_name) as number_of_employees FROM departments JOIN dept_emp ON departments.dept_no=dept_emp.dept_no WHERE dept_name='Marketing';
++---------------------+
+| number_of_employees |
++---------------------+
+|               20211 |
++---------------------+
+1 row in set (0.01 sec)
 
 H)
 
 mysql> SELECT first_name, last_name, dept_name FROM dept_manager JOIN departments ON dept_manager.dept_no=departments.dept_no JOIN employees ON employees.emp_no = dept_manager.emp_no;
++-------------+--------------+--------------------+
+| first_name  | last_name    | dept_name          |
++-------------+--------------+--------------------+
+| Tonny       | Butterworth  | Customer Service   |
+| Marjo       | Giarratana   | Customer Service   |
+| Xiaobin     | Spinelli     | Customer Service   |
+| Yuchang     | Weedman      | Customer Service   |
+| DeForest    | Hagimont     | Development        |
+| Leon        | DasSarma     | Development        |
+| Ebru        | Alpin        | Finance            |
+| Isamu       | Legleitner   | Finance            |
+| Shirish     | Ossenbruggen | Human Resources    |
+| Karsten     | Sigstam      | Human Resources    |
+| Margareta   | Markovitch   | Marketing          |
+| Vishwani    | Minakawa     | Marketing          |
+| Krassimir   | Wegerle      | Production         |
+| Rosine      | Cools        | Production         |
+| Shem        | Kieras       | Production         |
+| Oscar       | Ghazalie     | Production         |
+| Peternela   | Onuegbe      | Quality Management |
+| Rutger      | Hofmeyr      | Quality Management |
+| Sanjoy      | Quadeer      | Quality Management |
+| Dung        | Pesch        | Quality Management |
+| Arie        | Staelin      | Research           |
+| Hilary      | Kambil       | Research           |
+| Przemyslawa | Kaelbling    | Sales              |
+| Hauke       | Zhang        | Sales              |
++-------------+--------------+--------------------+
+24 rows in set (0.00 sec)
 
 i)
 
