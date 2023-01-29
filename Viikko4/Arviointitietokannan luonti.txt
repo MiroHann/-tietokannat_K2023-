@@ -1,0 +1,47 @@
+mysql> select * from opintojakso;
++---------------+--------------------------+--------+---------+
+| idOpintojakso | Nimi                     | Koodi  | Laajuus |
++---------------+--------------------------+--------+---------+
+|             3 | Tietokannat              | T20041 |       3 |
+|             4 | Liike-elaman tapatietous | T20042 |       3 |
+|             5 | Fysiikka 3               | T20043 |       3 |
+|             6 | Elektroniikan perusteet  | T20044 |       6 |
+|             7 | Kellarihumppa            | T20045 |       5 |
+|             8 | Matematiikka 2           | T20046 |       3 |
+|             9 | Ruotsin kieli            | T20047 |       3 |
+|            10 | VHDL-kieli               | T20048 |       3 |
++---------------+--------------------------+--------+---------+
+8 rows in set (0.00 sec)
+
+mysql> select * from opiskelija
+    -> ;
++--------------+---------+----------+----------------+--------------+
+| idOpiskelija | Etunimi | sukunimi | Osoite         | Luokkatunnus |
++--------------+---------+----------+----------------+--------------+
+|            1 | Aku     | Ankka    | Ankkalinna 313 | TTE3SNH      |
+|            2 | Roope   | Ankka    | Ankkalinna 314 | TTE3SNH      |
+|            3 | Iines   | Ankka    | Ankkalinna 315 | TTE4SNL      |
+|            4 | Mikki   | Hiiri    | Ankkalinna 316 | TTE2SNO      |
+|            5 | Hessu   | Hopo     | Ankkalinna 317 | TTE2SNO      |
++--------------+---------+----------+----------------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> select etunimi,sukunimi,arvosana,paivamaara,nimi from Arviointi JOIN Opiskelija on Opiskelija.idOpiskelija = Arviointi.opiskelija_idOpiskelija JOIN Opintojakso on Opintojakso.idOpintojakso = Arviointi.opintojakso_idOpintojakso;
++---------+----------+----------+------------+---------------+
+| etunimi | sukunimi | arvosana | paivamaara | nimi          |
++---------+----------+----------+------------+---------------+
+| Aku     | Ankka    |        1 | 2014-09-05 | Tietokannat   |
+| Aku     | Ankka    |        1 | 2014-09-05 | Fysiikka 3    |
+| Aku     | Ankka    |        0 | 2014-09-05 | Ruotsin kieli |
+| Roope   | Ankka    |        4 | 2014-09-05 | Tietokannat   |
+| Roope   | Ankka    |        2 | 2014-09-05 | Fysiikka 3    |
+| Iines   | Ankka    |        4 | 2014-09-05 | Tietokannat   |
+| Iines   | Ankka    |        3 | 2014-09-05 | Fysiikka 3    |
+| Mikki   | Hiiri    |        5 | 2014-09-05 | Tietokannat   |
+| Mikki   | Hiiri    |        4 | 2014-09-05 | Fysiikka 3    |
+| Hessu   | Hopo     |        1 | 2014-09-05 | Tietokannat   |
+| Hessu   | Hopo     |        5 | 2014-09-05 | Fysiikka 3    |
++---------+----------+----------+------------+---------------+
+11 rows in set (0.00 sec)
+
+
