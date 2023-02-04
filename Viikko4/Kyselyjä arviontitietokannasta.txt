@@ -1,0 +1,56 @@
+mysql> select etunimi,sukunimi,arvosana,nimi from Arviointi JOIN Opiskelija on Opiskelija.idOpiskelija = Arviointi.opiskelija_idOpiskelija JOIN Opintojakso on Opintojakso.idOpintojakso = Arviointi.opintojakso_idOpintojakso WHERE arvosana='0';
++---------+----------+----------+---------------+
+| etunimi | sukunimi | arvosana | nimi          |
++---------+----------+----------+---------------+
+| Aku     | Ankka    |        0 | Ruotsin kieli |
++---------+----------+----------+---------------+
+1 row in set (0.00 sec)
+
+b) 
+
+mysql> select etunimi,sukunimi,arvosana,nimi from Arviointi JOIN Opiskelija on Opiskelija.idOpiskelija = Arviointi.opiskelija_idOpiskelija JOIN Opintojakso on Opintojakso.idOpintojakso = Arviointi.opintojakso_idOpintojakso WHERE arvosana>'0' AND nimi='Fysiikka 3';
++---------+----------+----------+------------+
+| etunimi | sukunimi | arvosana | nimi       |
++---------+----------+----------+------------+
+| Aku     | Ankka    |        1 | Fysiikka 3 |
+| Roope   | Ankka    |        2 | Fysiikka 3 |
+| Iines   | Ankka    |        3 | Fysiikka 3 |
+| Mikki   | Hiiri    |        4 | Fysiikka 3 |
+| Hessu   | Hopo     |        5 | Fysiikka 3 |
++---------+----------+----------+------------+
+5 rows in set (0.00 sec)
+
+c) 
+
+mysql> select any_value(etunimi) as etunimi, any_value(sukunimi) as sukunimi, COUNT(nimi) as Osallistumiset from Arviointi JOIN Opiskelija on Opiskelija.idOpiskelija = Arviointi.opiskelija_idOpiskelija JOIN Opintojakso on Opintojakso.idOpintojakso = Arviointi.opintojakso_idOpintojakso WHERE etunimi = 'hessu';
++---------+----------+----------------+
+| etunimi | sukunimi | Osallistumiset |
++---------+----------+----------------+
+| Hessu   | Hopo     |              2 |
++---------+----------+----------------+
+1 row in set (0.00 sec)
+
+d)
+
+mysql> select any_value(etunimi) as etunimi, any_value(sukunimi) as sukunimi, avg(arvosana) as kesikiarvo from Arviointi JOIN Opiskelija on Opiskelija.idOpiskelija = Arviointi.opiskelija_idOpiskelija JOIN Opintojakso on Opintojakso.idOpintojakso = Arviointi.opintojakso_idOpintojakso WHERE etunimi = 'aku';
++---------+----------+------------+
+| etunimi | sukunimi | kesikiarvo |
++---------+----------+------------+
+| Aku     | Ankka    |     0.6667 |
++---------+----------+------------+
+1 row in set (0.00 sec)
+
+e)
+
+mysql> Select nimi, opintojakso_idOpintojakso from opintojakso LEFT JOIN arviointi ON idOpintojakso=Opintojakso_idopintojakso WHERE opintojakso_idOpintojakso IS NULL;
++--------------------------+---------------------------+
+| nimi                     | opintojakso_idOpintojakso |
++--------------------------+---------------------------+
+| Liike-elaman tapatietous |                      NULL |
+| Elektroniikan perusteet  |                      NULL |
+| Kellarihumppa            |                      NULL |
+| Matematiikka 2           |                      NULL |
+| VHDL-kieli               |                      NULL |
++--------------------------+---------------------------+
+5 rows in set (0.00 sec)
+
