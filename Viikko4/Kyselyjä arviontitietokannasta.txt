@@ -22,13 +22,14 @@ mysql> select etunimi,sukunimi,arvosana,nimi from Arviointi JOIN Opiskelija on O
 
 c) 
 
-mysql> select any_value(etunimi) as etunimi, any_value(sukunimi) as sukunimi, COUNT(nimi) as Osallistumiset from Arviointi JOIN Opiskelija on Opiskelija.idOpiskelija = Arviointi.opiskelija_idOpiskelija JOIN Opintojakso on Opintojakso.idOpintojakso = Arviointi.opintojakso_idOpintojakso WHERE etunimi = 'hessu';
+mysql> select any_value(etunimi) as etunimi, any_value(sukunimi) as sukunimi, nimi as Osallistumiset from Arviointi JOIN Opiskelija on Opiskelija.idOpiskelija = Arviointi.opiskelija_idOpiskelija JOIN Opintojakso on Opintojakso.idOpintojakso = Arviointi.opintojakso_idOpintojakso WHERE etunimi = 'hessu';
 +---------+----------+----------------+
 | etunimi | sukunimi | Osallistumiset |
 +---------+----------+----------------+
-| Hessu   | Hopo     |              2 |
+| Hessu   | Hopo     | Tietokannat    |
+| Hessu   | Hopo     | Fysiikka 3     |
 +---------+----------+----------------+
-1 row in set (0.00 sec)
+2 rows in set (0.00 sec)
 
 d)
 
