@@ -42,15 +42,14 @@ mysql> select any_value(etunimi) as etunimi, any_value(sukunimi) as sukunimi, av
 
 e)
 
-mysql> Select nimi, opintojakso_idOpintojakso from opintojakso LEFT JOIN arviointi ON idOpintojakso=Opintojakso_idopintojakso WHERE opintojakso_idOpintojakso IS NULL;
-+--------------------------+---------------------------+
-| nimi                     | opintojakso_idOpintojakso |
-+--------------------------+---------------------------+
-| Liike-elaman tapatietous |                      NULL |
-| Elektroniikan perusteet  |                      NULL |
-| Kellarihumppa            |                      NULL |
-| Matematiikka 2           |                      NULL |
-| VHDL-kieli               |                      NULL |
-+--------------------------+---------------------------+
+mysql> Select nimi, opintojakso_idOpintojakso as Suorituksia from opintojakso LEFT JOIN arviointi ON idOpintojakso=Opintojakso_idopintojakso WHERE opintojakso_idOpintojakso IS NULL;
++--------------------------+-------------+
+| nimi                     | Suorituksia |
++--------------------------+-------------+
+| Liike-elaman tapatietous |        NULL |
+| Elektroniikan perusteet  |        NULL |
+| Kellarihumppa            |        NULL |
+| Matematiikka 2           |        NULL |
+| VHDL-kieli               |        NULL |
++--------------------------+-------------+
 5 rows in set (0.00 sec)
-
