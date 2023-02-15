@@ -47,5 +47,4 @@ END IF;
 -- Lopuksi, jos opiskelija ja opintojakso on olemassa ja arvosana on järkevä
 --  INSERT-lause, jolla syötät tiedot Arviointi-tauluun
 INSERT INTO Arviointi VALUES(NULL,Arvos,CURDATE(),OpintojaksoID,OpiskID);
-LEAVE Aliohjelma
 END
