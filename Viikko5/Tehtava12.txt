@@ -1,0 +1,27 @@
+
+mysql> select Etunimi, sukunimi, nimi, teos.idteos from tekija JOIN tekija_teos ON tekija.idtekija=tekija_teos.idtekija JOIN teos ON teos.idteos=tekija_teos.idteos;
++---------+----------+-----------+--------+
+| Etunimi | sukunimi | nimi      | idteos |
++---------+----------+-----------+--------+
+| George  | Orwell   | twiglight |      6 |
+| Michael | Bay      | twiglight |      6 |
++---------+----------+-----------+--------+
+2 rows in set (0.00 sec)
+
+
+mysql> select Etunimi, sukunimi, nimi, teos.idteos from tekija JOIN tekija_teos ON tekija.idtekija=tekija_teos.idtekija JOIN teos ON teos.idteos=tekija_teos.idteos;
++---------+----------+-----------+--------+
+| Etunimi | sukunimi | nimi      | idteos |
++---------+----------+-----------+--------+
+| George  | Orwell   | twiglight |      6 |
+| Michael | Bay      | twiglight |      6 |
++---------+----------+-----------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select etunimi, sukunimi, osoite, lainaus.idkirja,palautettu from asiakas Join lainaus ON lainaus.idasiakas=asiakas.idasiakas Join kirja ON kirja.idkirja=lainaus.idkirja;
++---------+----------+-----------+---------+------------+
+| etunimi | sukunimi | osoite    | idkirja | palautettu |
++---------+----------+-----------+---------+------------+
+| Jeremy  | Hans     | Jokutie12 |      16 |          0 |
++---------+----------+-----------+---------+------------+
+1 row in set (0.00 sec)
