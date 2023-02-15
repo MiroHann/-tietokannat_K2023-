@@ -11,33 +11,33 @@ declare OpiskID INT DEFAULT 0;
 declare OpintojaksoID INT DEFAULT 0;
 
 IF OpiskID>0 then
-SELECT idOpiskelija INTO OpiskID FROM Opiskelija WHERE Etunimi=En AND Sukunimi=Sn;
-END IF;
+ SELECT idOpiskelija INTO OpiskID FROM Opiskelija WHERE Etunimi=En AND Sukunimi=Sn;
+ END IF;
 
 IF OpiskID=0 then 
-     SELECT 'Opiskelijaa ei ole'; -- TUlostetaan viesti käyttäjälle
-     LEAVE Aliohjelma;
-END IF;
+ SELECT 'Opiskelijaa ei ole'; -- TUlostetaan viesti käyttäjälle
+ LEAVE Aliohjelma;
+ END IF;
 
 
 IF OpintojaksoID>0 then
-SELECT idOpintojakso INTO OpintojaksoID FROM opintojakso WHERE Koodi=KK;
-END IF;
+ SELECT idOpintojakso INTO OpintojaksoID FROM opintojakso WHERE Koodi=KK;
+ END IF;
 
 IF OpintojaksoID=0 then 
-        SELECT 'Opintojaksoa ei ole';
-        LEAVE Aliohjelma;
-END IF;
+ SELECT 'Opintojaksoa ei ole';
+ LEAVE Aliohjelma;
+ END IF;
 
 IF Arvos<0 then
-SELECT 'Virheelinen arvosana';
-LEAVE Aliohjelma;
-END IF;
+ SELECT 'Virheelinen arvosana';
+ LEAVE Aliohjelma;
+ END IF;
 
 IF Arvos>5 then
-SELECT 'Virheelinen arvosana';
-LEAVE Aliohjelma;
-END IF;
+ SELECT 'Virheelinen arvosana';
+ LEAVE Aliohjelma;
+ END IF;
 
 INSERT INTO Arviointi VALUES(NULL,Arvos,CURDATE(),OpintojaksoID,OpiskID);
 END
